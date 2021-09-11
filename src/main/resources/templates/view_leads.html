@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>View Leads</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" th:href="@{vendors/feather/feather.css}">
+    <link rel="stylesheet" th:href="@{vendors/ti-icons/css/themify-icons.css}">
+    <link rel="stylesheet" th:href="@{vendors/css/vendor.bundle.base.css}">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" th:href="@{vendors/datatables.net-bs4/dataTables.bootstrap4.css}">
+    <link rel="stylesheet" th:href="@{vendors/ti-icons/css/themify-icons.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{js/select.dataTables.min.css}">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" th:href="@{css/vertical-layout-light/style.css}">
+    <!-- endinject -->
+    <link rel="shortcut icon" th:href="@{images/favicon.png}" />
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{css/custom/custom_style.css}">
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html ---------------------------------------->
+        <div th:replace="fragments/_navbar :: myNavbar"></div>
+
+
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+
+            <!-- partial:partials/_sidebar.html -->
+            <div th:replace="fragments/_sidebar :: mySidebar"></div>
+
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <!-- main content start -->
+
+                    <div class="row m-0 p-0">
+
+                        <div class="col-12 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <br>
+                                    <!-- Search  BC  -->
+                                    <div class="w-100">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <label for="inputName">
+                                                    <h6>Name / Email / Mobile Number ( Enter Any One )</h6>
+                                                </label>
+                                                <input type="text" class="form-control" id="inputSearch" name="name"
+                                                    required="">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <button type="button"
+                                                    class="btn btn-gradient-success btn-rounded border ml-3" id="search"
+                                                    style="margin-top:34px ;">Search</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- Search  BC END -->
+
+                                    <div class="mt-3" id="search_result">
+                                        <!-- Search Result Here-->
+                                    </div>
+                                    </br>
+
+
+                                    <div>
+                                        <h4 class="card-title m-0 p-0">BC Leads List</h4>
+                                        <br>
+                                        <div class="table-responsive">
+
+
+                                            <table class="table  table-bordered table-lg ">
+                                                <thead class="thead-dark">
+                                                    <tr>
+                                                        <!--<th> # </th>-->
+                                                        <th>ID</th>
+                                                        <th>Name</th>
+                                                        <th>Email</th>
+                                                        <th>Mobile</th>
+                                                        <th>Edit</th>
+
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr th:each="approvedList: ${list}">
+                                                        <td th:text="${approvedList.id}" />
+                                                        <td th:text="${approvedList.name}" />
+                                                        <td th:text="${approvedList.email}" />
+                                                        <td th:text="${approvedList.mobile}" />
+                                                        <td class="">
+                                                            <a th:href="@{'/csp_onboarding/'(${approvedList.location_id})}" class="btn btn-primary text-center mx-auto">Edit</a>
+                                                        </td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+
+
+                                        </div>
+                                        <br>
+
+                                        <!-------------------------------------------------->
+
+                                        <!---------------------------------------------------->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- main content end -->
+                </div>
+                <!-- content-wrapper ends -->
+                <!-- partial:partials/_footer.html -->
+                <!-- footer -->
+                <div th:replace="fragments/_footer :: myFooter"></div>
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+
+    <!-- plugins:js -->
+    <script th:src="@{vendors/js/vendor.bundle.base.js}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script th:src="@{vendors/chart.js/Chart.min.js}"></script>
+    <script th:src="@{vendors/datatables.net/jquery.dataTables.js}"></script>
+    <script th:src="@{vendors/datatables.net-bs4/dataTables.bootstrap4.js}"></script>
+    <script th:src="@{js/dataTables.select.min.js}"></script>
+
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script th:src="@{js/off-canvas.js}"></script>
+    <script th:src="@{js/hoverable-collapse.js}"></script>
+    <script th:src="@{js/template.js}"></script>
+    <script th:src="@{js/settings.js}"></script>
+    <script th:src="@{js/todolist.js}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script th:src="@{js/dashboard.js}"></script>
+    <script th:src="@{js/Chart.roundedBarCharts.js}"></script>
+    <!-- End custom js for this page-->
+
+    <!-- Custom JS  -->
+    <script th:src="@{js/custom.js}"></script>
+
+    <script>
+        $(document).ready(() => {
+
+            $("#search").on("click", function () {
+                var value = $("#inputSearch").val();
+
+                if (value != "") {
+                    $.ajax({
+                        url: "/search/leads/" + value,
+                        success: function (data) {
+
+                            $("#search_result").html(data);
+
+                        }
+                    });
+                } else {
+                    alert("Search Field is EMPTY");
+                }
+            });
+        });
+    </script>
+
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+</html>

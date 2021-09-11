@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>New Location Form</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" th:href="@{vendors/feather/feather.css}">
+    <link rel="stylesheet" th:href="@{vendors/ti-icons/css/themify-icons.css}">
+    <link rel="stylesheet" th:href="@{vendors/css/vendor.bundle.base.css}">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" th:href="@{vendors/datatables.net-bs4/dataTables.bootstrap4.css}">
+    <link rel="stylesheet" th:href="@{vendors/ti-icons/css/themify-icons.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{js/select.dataTables.min.css}">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" th:href="@{css/vertical-layout-light/style.css}">
+    <!-- endinject -->
+    <link rel="shortcut icon" th:href="@{images/favicon.png}" />
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{css/custom/custom_style.css}">
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html ---------------------------------------->
+        <div th:replace="fragments/_navbar :: myNavbar"></div>
+
+
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+
+            <!-- partial:partials/_sidebar.html -->
+            <div th:replace="fragments/_sidebar :: mySidebar"></div>
+
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <!-- main content start -->
+
+                    <div class="col-12 card card-primary py-4">
+                        <div class="card-header mt-2 rounded">
+                            <h3 class="card-title pt-3">Leads Entry ( New Location ) </h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <!-- form start -->
+
+                        <form action="#" th:action="@{/leadsMappingSave}" th:object="${newLead}" method="POST">
+                            <div class="card-body">
+
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label>Bank Name</label>
+                                        <input class="form-control" type="text" name="bank_name_ld" required="required">
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label>State</label>
+                                        <input class="form-control" type="text" name="state_ld" required="required">
+
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label>District</label>
+                                        <input class="form-control" type="text" name="district_ld" required="required">
+
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label>Block</label>
+                                        <input class="form-control" type="text" name="block_id" required="required">
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label>Panchayat</label>
+                                        <input class="form-control" type="text" name="panchyat_ld" required="required">
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label>Village / CSP location</label>
+                                        <input class="form-control" type="text" name="village_ld" required="required">
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label>Link Branch Name</label>
+                                        <input class="form-control" type="text" name="branch_name_ld"
+                                            required="required">
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label>Link Branch distance</label>
+                                        <input class="form-control" type="text" name="branch_distance_ld"
+                                            required="required">
+                                    </div>
+
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label>Name</label>
+                                        <input class="form-control" type="text" name="name_ld" required="required">
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label>Mobile</label>
+                                        <input class="form-control" type="text" name="mobile_ld" required="required">
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12 form-group">
+                                        <label>Email address</label>
+                                        <input class="form-control" type="email" name="email_ld" required="required">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- /.card-body -->
+                            <div class=" mb-2 rounded text-center">
+                                <button type="submit " class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- main content end -->
+                </div>
+                <!-- content-wrapper ends -->
+                <!-- partial:partials/_footer.html -->
+                <!-- footer -->
+                <div th:replace="fragments/_footer :: myFooter"></div>
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+
+    <!-- plugins:js -->
+    <script th:src="@{vendors/js/vendor.bundle.base.js}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script th:src="@{vendors/chart.js/Chart.min.js}"></script>
+    <script th:src="@{vendors/datatables.net/jquery.dataTables.js}"></script>
+    <script th:src="@{vendors/datatables.net-bs4/dataTables.bootstrap4.js}"></script>
+    <script th:src="@{js/dataTables.select.min.js}"></script>
+
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script th:src="@{js/off-canvas.js}"></script>
+    <script th:src="@{js/hoverable-collapse.js}"></script>
+    <script th:src="@{js/template.js}"></script>
+    <script th:src="@{js/settings.js}"></script>
+    <script th:src="@{js/todolist.js}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script th:src="@{js/dashboard.js}"></script>
+    <script th:src="@{js/Chart.roundedBarCharts.js}"></script>
+    <!-- End custom js for this page-->
+
+    <!-- Custom JS  -->
+    <script th:src="@{js/custom.js}"></script>
+
+</body>
+
+</html>
