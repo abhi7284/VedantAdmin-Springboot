@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Approved Location Form</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" th:href="@{vendors/feather/feather.css}">
+    <link rel="stylesheet" th:href="@{vendors/ti-icons/css/themify-icons.css}">
+    <link rel="stylesheet" th:href="@{vendors/css/vendor.bundle.base.css}">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" th:href="@{vendors/datatables.net-bs4/dataTables.bootstrap4.css}">
+    <link rel="stylesheet" th:href="@{vendors/ti-icons/css/themify-icons.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{js/select.dataTables.min.css}">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" th:href="@{css/vertical-layout-light/style.css}">
+    <!-- endinject -->
+    <link rel="shortcut icon" th:href="@{images/favicon.png}" />
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{css/custom/custom_style.css}">
+</head>
+
+<body>
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html ---------------------------------------->
+        <div th:replace="fragments/_navbar :: myNavbar"></div>
+
+
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+
+            <!-- partial:partials/_sidebar.html -->
+            <div th:replace="fragments/_sidebar :: mySidebar"></div>
+
+
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <!-- main content start -->
+
+
+                    <div class="row p-0 m-0" style="padding: 20px;">
+                        <div class="col-12 card card-primary py-4">
+                            <div class="card-header mt-2 rounded">
+                                <h3 class="card-title pt-3">Leads Entry ( Approved Location ) </h3>
+                            </div>
+
+                            <div id="div1"></div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <form action="#" th:action="@{/save-lead}" th:object="${lead}" method="POST">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12 form-group">
+                                            <label for="bank">Bank Name</label>
+                                            <select class="form-control" id="bank" required="required">
+                                                <option value="" selected>Select Bank</option>
+                                                <option>JRGB</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 col-sm-12 form-group">
+                                            <label for="inputState">State</label>
+                                            <select class="form-control" id="inputState" required="required">
+                                                <option value="" selected>Select State</option>
+                                                <option>Jharkhand</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12 form-group">
+                                            <label for="inputDistrict">District</label>
+                                            <select class="form-control" id="inputDistrict" required="required">
+                                                <option value="" selected>Select District</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-12 form-group">
+                                            <label for="inputBlock">Block</label>
+                                            <select class="form-control" id="inputBlock" required="required">
+                                                <option value="" selected>Select Block</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12 form-group">
+                                            <label for="inputPanchayat">Panchayat</label>
+                                            <select class="form-control" id="inputPanchayat" required="required">
+                                                <option value="" selected>Select Panchayat</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-12 form-group">
+                                            <label>Village / CSP location</label>
+                                            <select class="form-control" id="inputVillage" required="required">
+                                                <option value="" selected>Select Village</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12 form-group">
+                                            <label for="inputLinkBranch">Link Branch</label>
+                                            <select class="form-control" id="inputLinkBranch" required="required">
+                                                <option value="" selected>Select Link Branch</option>
+                                            </select>
+
+                                        </div>
+                                        <div class="col-md-6 col-sm-12 form-group">
+                                            <label>Name</label>
+                                            <input class="form-control" type="text" name="name" required="required">
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-12 form-group">
+                                            <label>Mobile</label>
+                                            <input class="form-control" type="text" name="mobile" maxlength="10"
+                                                required="required">
+
+                                        </div>
+
+                                        <div class="col-md-6 col-sm-12 form-group">
+                                            <label>Email address</label>
+                                            <input class="form-control" type="email" name="email" required="required">
+
+                                        </div>
+
+                                        <div style="display:none">
+                                            <input type="text" name="location_id" id="locationId" required="required">
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                                <!-- /.card-body -->
+
+                                <div class=" mb-2 rounded text-center">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- main content end -->
+                </div>
+                <!-- content-wrapper ends -->
+                <!-- partial:partials/_footer.html -->
+                <!-- footer -->
+                <div th:replace="fragments/_footer :: myFooter"></div>
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+
+    <!-- plugins:js -->
+    <script th:src="@{vendors/js/vendor.bundle.base.js}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script th:src="@{vendors/chart.js/Chart.min.js}"></script>
+    <script th:src="@{vendors/datatables.net/jquery.dataTables.js}"></script>
+    <script th:src="@{vendors/datatables.net-bs4/dataTables.bootstrap4.js}"></script>
+    <script th:src="@{js/dataTables.select.min.js}"></script>
+
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script th:src="@{js/off-canvas.js}"></script>
+    <script th:src="@{js/hoverable-collapse.js}"></script>
+    <script th:src="@{js/template.js}"></script>
+    <script th:src="@{js/settings.js}"></script>
+    <script th:src="@{js/todolist.js}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script th:src="@{js/dashboard.js}"></script>
+    <script th:src="@{js/Chart.roundedBarCharts.js}"></script>
+    <!-- End custom js for this page-->
+
+    <!-- Custom JS  -->
+    <script th:src="@{js/custom.js}"></script>
+
+    <script>
+        $(document).ready(function () {
+            /* ---------- Get District From State Dropdown ( Ajax ) ----------*/
+            $("#inputState").on("change", function () {
+                var state = $("#inputState").val();
+                var str = "<option value='' selected>Select District</option>";
+                if (state != "") {
+                    $.ajax({
+                        url: "state/" + state,
+                        success: function (data) {
+                            for (var i = 0; i < data.length; i++) {
+                                str = str + "<option>" + data[i] + "</option>";
+                            }
+
+                            $("#inputDistrict").html(str);
+
+                        }
+                    });
+                } else {
+                    $("#inputDistrict").html(str);
+                }
+            });
+            /* ---------- END ---------- */
+
+            /* ---------- Get Block From District Dropdown ( Ajax ) ----------*/
+            $("#inputDistrict").on("change", function () {
+                var district = $("#inputDistrict").val();
+                var str = "<option value='' selected>Select Block</option>";
+                if (district != "") {
+                    $.ajax({
+                        url: "district/" + district,
+                        success: function (data) {
+                            for (var i = 0; i < data.length; i++) {
+                                str = str + "<option>" + data[i] + "</option>";
+                            }
+
+                            $("#inputBlock").html(str);
+
+                        }
+                    });
+                } else {
+                    $("#inputBlock").html(str);
+                }
+            });
+            /* ---------- END ---------- */
+
+            /* ---------- Get Panchayat From Block Dropdown ( Ajax ) ----------*/
+            $("#inputBlock").on("change", function () {
+                var block = $("#inputBlock").val();
+                var str = "<option value='' selected>Select Block</option>";
+                if (block != "") {
+                    $.ajax({
+                        url: "block/" + block,
+                        success: function (data) {
+                            for (var i = 0; i < data.length; i++) {
+                                str = str + "<option>" + data[i] + "</option>";
+                            }
+
+                            $("#inputPanchayat").html(str);
+
+                        }
+                    });
+                } else {
+                    $("#inputPanchayat").html(str);
+                }
+            });
+            /* ---------- END ---------- */
+
+
+            /* ---------- Get Village From Panchayat Dropdown ( Ajax ) ----------*/
+            $("#inputPanchayat").on("change", function () {
+                var panchayat = $("#inputPanchayat").val();
+                var str = "<option value='' selected>Select Village</option>";
+                if (panchayat != "") {
+                    $.ajax({
+                        url: "panchayat/" + panchayat,
+                        success: function (data) {
+                            for (var i = 0; i < data.length; i++) {
+                                str = str + "<option>" + data[i] + "</option>";
+                            }
+
+                            $("#inputVillage").html(str);
+
+                        }
+                    });
+                } else {
+                    $("#inputVillage").html(str);
+                }
+            });
+            /* ---------- END ---------- */
+
+            /* ---------- Get LinkBranch From Village Dropdown ( Ajax ) ----------*/
+            $("#inputVillage").on("change", function () {
+                var village = $("#inputVillage").val();
+                var str = "<option value='' selected>Select Link Branch</option>";
+                if (village != "") {
+                    $.ajax({
+                        url: "village/" + village,
+                        success: function (data) {
+                            for (var i = 0; i < data.length; i++) {
+                                str = str + "<option>" + data[i] + "</option>";
+                            }
+
+                            $("#inputLinkBranch").html(str);
+
+                        }
+                    });
+                } else {
+                    $("#inputLinkBranch").html(str);
+                }
+            });
+            /* ---------- END ---------- */
+
+            /* ---------- Get LinkBranch From Village Dropdown ( Ajax ) ----------*/
+            $("#inputVillage").on("change", function () {
+                var value = $("#inputVillage").val();
+                if (value != "") {
+                    $.ajax({
+                        url: "id/" + value,
+                        success: function (data) {
+                        	if(data == 0){
+                        		$("#locationId").val("");
+                        		
+                        	}
+                        	else{
+                                $("#locationId").val(data);
+                                console.log(data);
+                        	}
+
+                        }
+                    });
+                } else {
+
+                    $("#locationId").val("");
+                    
+                }
+            });
+            /* ---------- END ---------- */
+
+
+
+        });
+    </script>
+
+</body>
+
+</html>
